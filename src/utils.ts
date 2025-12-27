@@ -106,3 +106,8 @@ export async function sendWaitlistMail(toEmail: string, fullName: string) {
   }
 }
 
+export function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+

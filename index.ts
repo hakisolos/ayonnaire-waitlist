@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { isValidEmail } from "./src/models/utils";
-import Conndb from "./src/models/db";
+import { isValidEmail } from "./src/utils";
+import Conndb from "./src/db";
 import Waiter from "./src/models/waiters";
-import { sendWaitlistMail } from "./src/models/utils";
+import { sendWaitlistMail } from "./src/utils";
 const app = new Hono()
 
 
