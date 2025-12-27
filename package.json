@@ -1,0 +1,26 @@
+{
+  "name": "ayonnaire-waitlist",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/cors": "^2.8.19",
+    "@types/nodemailer": "^7.0.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "start": "pm2 start index.ts --attach --name ayonnaire-waitlist",
+    "stop": "pm2 stop ayonnaire-waitlist",
+    "restart": "pm2 stop ayonnaire-waitlist && pm2 start index.ts --attach --name ayonnaire-waitlist"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "hono": "^4.11.3",
+    "mongoose": "^9.0.2",
+    "nodemailer": "^7.0.12",
+    "pm2": "^6.0.14"
+  }
+}
