@@ -3,7 +3,7 @@ import { cors } from "hono/cors";
 
 import Conndb from "./src/models/db";
 import Waiter from "./src/models/waiters";
-
+import { sendWaitlistMail } from "./src/models/utils";
 const app = new Hono()
 
 
@@ -29,8 +29,9 @@ app.post("/api/join", async(c) => {
                 email
             }
         )
-        
+        await sendWaitlistMail(email, fullname)
         return c.json({message: "user added to waitlist"})
+        
     }catch(e){
         console.log(e)
         return c.json({error: e},500)
