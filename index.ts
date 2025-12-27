@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-
+import { isValidEmail } from "./src/models/utils";
 import Conndb from "./src/models/db";
 import Waiter from "./src/models/waiters";
 import { sendWaitlistMail } from "./src/models/utils";
@@ -17,6 +17,9 @@ app.post("/api/join", async(c) => {
     const {fullname, email} = await c.req.json()
     if(!fullname || !email) {
         return c.json({error: "fullname and email required... | bad request"})
+    }
+    if(!isValidEmail(email)) {
+        return c.json({error: "invalid email"}, 400)
     }
     try{
         const existtingUser = await Waiter.findOne({email})

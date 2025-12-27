@@ -19,6 +19,6 @@
 
 ## HOW TO DEPLOY?:
 - must have bun installed
-- buid: ```bun install```
-- start: ```bun start``
+- build: ```bun install```
+- start: ```bun start```
 - stop: ```bun stop```
