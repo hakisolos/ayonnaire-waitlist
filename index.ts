@@ -40,6 +40,34 @@ app.post("/api/join", async(c) => {
         return c.json({error: e},500)
     }
 })
+app.get("/api/waitlist", async (c) => {
+    try {
+        const users = await Waiter.find({})
+
+        if (!users || users.length === 0) {
+            return c.json({
+                message: "waitlist is empty",
+                data: []
+            })
+        }
+
+        return c.json({
+            message: "waitlist users fetched",
+            count: users.length,
+            data: users.map(u => ({
+                fullname: u.fullname,
+                email: u.email,
+                joinedAt: u.createdAt
+            }))
+        })
+    } catch (e) {
+        console.log(e)
+        return c.json(
+            { error: "internal server error" },
+            500
+        )
+    }
+})
 
 Conndb()
 Bun.serve({fetch: app.fetch, port: 4000})
